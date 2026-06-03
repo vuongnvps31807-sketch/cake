@@ -825,13 +825,15 @@ sOv.onclick=e=>{if(e.target===sOv)closeSearch()};
 document.querySelectorAll('.search-hints span').forEach(s=>s.onclick=()=>{
     const target = s.getAttribute('data-target');
     closeSearch();
-    if(target && target.startsWith('#')){
-        const el = document.querySelector(target);
-        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-        else window.location.hash = target;
-    } else if(target) {
-        window.location.href = target; // the-tin-dung
-    }
+    setTimeout(()=>{
+        if(target && target.startsWith('#')){
+            const el = document.querySelector(target);
+            if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+            else window.location.hash = target;
+        } else if(target) {
+            window.location.href = target;
+        }
+    }, 300);
 });
 
 // Submit search on Enter → jump to features
