@@ -911,15 +911,21 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();aMd.c
   });
   window.addEventListener('pageshow',function(ev){if(ev.persisted)hide();});
 })();
-  const hamburger = document.getElementById('hamburger');
-const nav = document.querySelector('nav');
-hamburger.onclick = () => {
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.querySelector('header nav');
+hamburger.onclick = (e) => {
+  e.stopPropagation();
   hamburger.classList.toggle('open');
-  nav.classList.toggle('open');
+  navMenu.classList.toggle('open');
 };
-nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+document.addEventListener('click', () => {
   hamburger.classList.remove('open');
-  nav.classList.remove('open');
+  navMenu.classList.remove('open');
+});
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  navMenu.classList.remove('open');
+}));
 }));
 </script>
 </body>
