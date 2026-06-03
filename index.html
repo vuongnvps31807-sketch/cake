@@ -472,7 +472,7 @@ footer strong{color:var(--pink)}
       <span data-target="#register" data-i18n="hint.open">Mở thẻ 2in1</span>
       <span data-target="#features" data-i18n="hint.vip">ShopeeVIP</span>
       <span data-target="#features" data-i18n="hint.voucher">E-voucher</span>
-      <span data-target="#guide" data-i18n="hint.guide">Sản phẩm</span>
+      <span data-target="#products" data-i18n="hint.product">Sản phẩm</span>
     </div>
   </div>
 </div>
@@ -757,7 +757,7 @@ const I18N = {
   VI: {
     'nav.offers':'Ưu đãi','nav.open':'Mở thẻ','nav.guide':'Hướng dẫn','nav.terms':'Điều khoản','nav.contact':'Liên hệ','nav.app':'Tải ứng dụng',
     'search.placeholder':'Tìm kiếm ưu đãi, thẻ, dịch vụ...',
-    'hint.cashback':'Hoàn tiền Shopee','hint.open':'Mở thẻ 2in1','hint.vip':'ShopeeVIP','hint.voucher':'E-voucher','hint.guide':'Hướng dẫn',
+    'hint.cashback':'Hoàn tiền Shopee','hint.open':'Mở thẻ 2in1','hint.vip':'ShopeeVIP','hint.voucher':'E-voucher','hint.product':'Sản phẩm',
     'app.title':'Tải ứng dụng VPBank','app.desc':'Quét mã hoặc chọn cửa hàng để cài đặt ứng dụng và mở thẻ ngay trên điện thoại.','app.getIt':'TẢI VỀ TỪ','app.dlOn':'TẢI VỀ TỪ',
     'hero.title':'Thẻ tín dụng<br>2in1 CakeBank',
     'hero.sub':'Mở thẻ 100% online, đăng ký 2 phút có ngay hạn mức – tận hưởng ưu đãi du lịch, ăn uống & mua sắm.',
@@ -778,7 +778,7 @@ const I18N = {
   EN: {
     'nav.offers':'Offers','nav.open':'Open card','nav.guide':'Guide','nav.terms':'Terms','nav.contact':'Contact','nav.app':'Get the app',
     'search.placeholder':'Search offers, cards, services...',
-    'hint.cashback':'Shopee cashback','hint.open':'Open 2in1 card','hint.vip':'ShopeeVIP','hint.voucher':'E-voucher','hint.guide':'Guide',
+    'hint.cashback':'Shopee cashback','hint.open':'Open 2in1 card','hint.vip':'ShopeeVIP','hint.voucher':'E-voucher','hint.san':'Guide',
     'app.title':'Download VPBank app','app.desc':'Scan the QR or pick a store to install the app and open your card right on your phone.','app.getIt':'GET IT ON','app.dlOn':'DOWNLOAD ON',
     'hero.title':'2in1 VPBank<br>Credit Card',
     'hero.sub':'Open your card 100% online in just 2 minutes – enjoy travel, dining & shopping rewards.',
@@ -823,13 +823,15 @@ sOv.onclick=e=>{if(e.target===sOv)closeSearch()};
 
 // Search hints → redirect to section
 document.querySelectorAll('.search-hints span').forEach(s=>s.onclick=()=>{
-  const target = s.getAttribute('data-target');
-  closeSearch();
-  if(target && target.startsWith('#')){
-    const el = document.querySelector(target);
-    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-    else window.location.hash = target;
-  }
+    const target = s.getAttribute('data-target');
+    closeSearch();
+    if(target && target.startsWith('#')){
+        const el = document.querySelector(target);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+        else window.location.hash = target;
+    } else if(target) {
+        window.location.href = target; // the-tin-dung
+    }
 });
 
 // Submit search on Enter → jump to features
@@ -886,19 +888,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();aMd.c
       show();
     });
   });
-window.addEventListener('pageshow', function(ev){if(ev.persisted)hide();});
+  window.addEventListener('pageshow',function(ev){if(ev.persisted)hide();});
 })();
-</script>
-
-<script>
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.onkeydown = function(e) {
-        if (e.keyCode == 123) return false;
-        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-        if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-    }
 </script>
 </body>
 </html>
