@@ -918,9 +918,11 @@ hamburger.onclick = (e) => {
   hamburger.classList.toggle('open');
   navMenu.classList.toggle('open');
 };
-document.addEventListener('click', () => {
-  hamburger.classList.remove('open');
-  navMenu.classList.remove('open');
+document.addEventListener('click', (e) => {
+  if(!hamburger.contains(e.target) && !navMenu.contains(e.target)){
+    hamburger.classList.remove('open');
+    navMenu.classList.remove('open');
+  }
 });
 navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   hamburger.classList.remove('open');
