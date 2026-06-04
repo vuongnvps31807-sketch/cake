@@ -586,8 +586,9 @@ footer strong{color:var(--pink)}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 @media(max-width:768px){
-  .hamburger{display:flex}
-  nav{display:none;position:absolute;top:100%;left:0;width:100%;background:rgba(10,14,46,.97);padding:16px 6%;flex-direction:column;z-index:200}
+  .hamburger{display:flex !important}
+  .header-actions{display:none !important}
+  nav{display:none !important;position:absolute;top:100%;left:0;width:100%;background:rgba(10,14,46,.97);padding:16px 6%;flex-direction:column;z-index:200}
   nav.open{display:flex !important}
   nav ul{flex-direction:column;gap:16px;width:100%}
   nav a{font-size:16px;padding:8px 0;display:block}
