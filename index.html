@@ -586,13 +586,12 @@ footer strong{color:var(--pink)}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 @media(max-width:768px){
-  .hamburger{display:flex !important}
-  .header-actions{display:none !important}
-  nav{display:none !important;position:absolute;top:100%;left:0;width:100%;background:rgba(10,14,46,.97);padding:16px 6%;flex-direction:column;z-index:200}
-  nav.open{display:flex !important}
-  nav ul{flex-direction:column;gap:16px;width:100%}
-  nav a{font-size:16px;padding:8px 0;display:block}
-  .hamburger span{display:block !important;width:24px;height:2px;background:#fff !important;border-radius:2px}
+  .hamburger{display:flex}
+  nav{display:none;position:absolute;top:100%;left:0;width:100%;background:rgba(10,14,46,.97);padding:16px 6%;flex-direction:column}
+  nav.open{display:flex}
+  nav ul{flex-direction:column;gap:16px}
+  nav a{font-size:16px}
+.hamburger span{display:block !important;width:24px;height:2px;background:#fff !important;border-radius:2px}
 }
 </style>
 
@@ -919,11 +918,9 @@ hamburger.onclick = (e) => {
   hamburger.classList.toggle('open');
   navMenu.classList.toggle('open');
 };
-document.addEventListener('click', (e) => {
-  if(!hamburger.contains(e.target) && !navMenu.contains(e.target)){
-    hamburger.classList.remove('open');
-    navMenu.classList.remove('open');
-  }
+document.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  navMenu.classList.remove('open');
 });
 navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   hamburger.classList.remove('open');
