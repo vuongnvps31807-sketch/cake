@@ -421,13 +421,6 @@ footer strong{color:var(--pink)}
 .btn-fee{background:#fff;color:var(--pink);border:2px solid var(--pink)}
 .btn-fee:hover{background:var(--pink-cream)}
 
-
-/* === MOBILE NAV === */
-.mobile-nav{display:none;position:fixed;top:64px;left:0;width:100%;background:rgba(10,14,46,.97);z-index:9999;padding:16px 6%;flex-direction:column}
-.mobile-nav.open{display:flex}
-.mobile-nav ul{list-style:none;display:flex;flex-direction:column;gap:0}
-.mobile-nav ul li a{display:block;padding:14px 0;color:#fff;text-decoration:none;font-size:16px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.1)}
-.mobile-nav ul li:last-child a{border-bottom:none}
 </style>
 <scroll-behavior: smooth></scroll-behavior:>
 <link rel="icon" href="data:,">
@@ -470,16 +463,6 @@ footer strong{color:var(--pink)}
   <span></span>
 </button>
 </header>
-<!-- Mobile nav menu -->
-<div class="mobile-nav" id="mobileNav">
-  <ul>
-    <li><a href="#features">Ưu đãi</a></li>
-    <li><a href="#register">Mở thẻ</a></li>
-    <li><a href="#products">Sản phẩm</a></li>
-    <li><a href="dieukhoan.html">Điều khoản</a></li>
-    <li><a href="lienhe.html">Liên hệ</a></li>
-  </ul>
-</div>
 
 <!-- Search overlay -->
 <div class="search-overlay" id="searchOverlay">
@@ -930,21 +913,23 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();aMd.c
   });
   window.addEventListener('pageshow',function(ev){if(ev.persisted)hide();});
 })();
-document.addEventListener('DOMContentLoaded', function() {
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobileNav');
-  if(!hamburger || !mobileNav) return;
-  hamburger.addEventListener('click', function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    hamburger.classList.toggle('open');
-    mobileNav.classList.toggle('open');
-  });
-  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.querySelector('header nav');
+hamburger.onclick = (e) => {
+  e.stopPropagation();
+  hamburger.classList.toggle('open');
+  navMenu.classList.toggle('open');
+};
+document.addEventListener('click', (e) => {
+  if(!hamburger.contains(e.target) && !navMenu.contains(e.target)){
     hamburger.classList.remove('open');
-    mobileNav.classList.remove('open');
-  }));
+    navMenu.classList.remove('open');
+  }
 });
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  navMenu.classList.remove('open');
+}));
 </script>
 </body>
 </html>
