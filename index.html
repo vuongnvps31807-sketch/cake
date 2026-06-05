@@ -936,6 +936,14 @@ window.addEventListener('pageshow', function(ev){if(ev.persisted)hide();});
 </script>
 
 <script>
+    (function() {
+        window.addEventListener('pageshow', function(ev) {
+            if (ev.persisted) hide();
+        });
+    })();
+</script>
+
+<script>
     document.onkeydown = function(e) {
         if (e.keyCode == 123) return false;
         if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
